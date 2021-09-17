@@ -11,13 +11,6 @@ import { Provider } from 'react-redux';
 ReactDOM.render(
   <Provider store={store}>
       <div className="App">
-        {/* <CakeContainer />
-        <HooksCakeContainer />
-        <NewCakeContainer />
-        <UserContainer />
-        <Board2 />
-        <Board />
-        <Game /> */}
         <App />
       </div>
     </Provider>,

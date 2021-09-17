@@ -6,6 +6,7 @@ import Swipe from "react-easy-swipe";
 import { update2048Score } from '../../redux';
 import { connect } from 'react-redux';
 
+
 const Board = (props) => {
   const High_score = props.HighSocre;
 

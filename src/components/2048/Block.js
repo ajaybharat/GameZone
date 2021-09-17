@@ -1,6 +1,7 @@
 import React from 'react'
 import { getColors,style } from '../../helper';
 
+
 const Block = ({num}) => {
     const {blockStyle} = style;
     return (
