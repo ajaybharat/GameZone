@@ -358,7 +358,7 @@ const Board = (props) => {
 
   useEffect(()=>{
     initialize();
-  })
+  },[])
 
   return (
     <div className="App">
