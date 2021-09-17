@@ -11,7 +11,6 @@ const reducerSnake = (state = initialState, action) => {
                 ...state,
                 Snakescore:action.payload
             };
-            break;
         default: return state;
     }
 }

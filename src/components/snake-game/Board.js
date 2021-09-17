@@ -1,4 +1,4 @@
-import React, {useEffect,useState} from 'react'
+import React, {useState} from 'react'
 import { ReverseLinkedList,randomIntForFood,useInterval,useEvent } from '../../helper';
 import { connect } from 'react-redux';
 import { updateSnakeScore } from '../../redux';
@@ -46,7 +46,7 @@ const getSnakeStartingValue = board => {
 const SnakeBoard = (props) => {
     const HighScore = props.HighScoreSnake;
     const [score, setscore] = useState(0);    
-    const [board, setboard] = useState(createboard());
+    const [board] = useState(createboard());
     const [snake, setsnake] = useState(new LinkedList(getSnakeStartingValue(board)));
     const [snakecells, setsnakecells] = useState(new Set([snake.head.value.cell]));
     const [foodcell, setfoodcell] = useState(snake.head.value.cell + 5);
@@ -175,7 +175,7 @@ const SnakeBoard = (props) => {
         while(true)
         {
             nextFoodCell = randomIntForFood(1, maxPossibleCellValue);
-            if(newsnakecells.has(nextFoodCell) || foodcell == nextFoodCell)
+            if(newsnakecells.has(nextFoodCell) || foodcell === nextFoodCell)
             {
                 continue;
             }

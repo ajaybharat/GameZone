@@ -11,7 +11,6 @@ const reducer2048 = (state = initialState, action) => {
                 ...state,
                 score:action.payload
             };
-            break;
         default: return state;
     }
 }

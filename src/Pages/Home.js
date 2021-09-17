@@ -1,5 +1,4 @@
 import React from 'react'
-import Routes from '../routes'
 import { Link } from "react-router-dom";
 
 function Home() {
