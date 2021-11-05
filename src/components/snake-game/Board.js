@@ -1,4 +1,5 @@
-import React, {useState} from 'react'
+// eslint-disable-next-line
+import React, {useState,useEffect} from 'react'
 import { ReverseLinkedList,randomIntForFood,useInterval,useEvent } from '../../helper';
 import { connect } from 'react-redux';
 import { updateSnakeScore } from '../../redux';
@@ -52,6 +53,13 @@ const SnakeBoard = (props) => {
     const [foodcell, setfoodcell] = useState(snake.head.value.cell + 5);
     const [direction, setdirection] = useState(DIRECTION.RIGHT);
     const [foodShouldReverseDirection, setfoodShouldReverseDirection] = useState(false);
+
+
+
+    useEffect(() => {
+        let scorefromlocal = localStorage.getItem('snakegame');
+        props.updateSnakeScore(scorefromlocal);
+    }, [props])
 
     // useEffect(() => {
     //     window.addEventListener('keydown',e => {
@@ -157,7 +165,6 @@ const SnakeBoard = (props) => {
     };
 
     const reverseSnake = () => {
-        debugger;
         const tailnextnodeDirection = getnextNodeDirection(snake.tail, direction);
         const nextdirection = getOppositedirec(tailnextnodeDirection);
         setdirection(nextdirection);
@@ -189,6 +196,7 @@ const SnakeBoard = (props) => {
         if((score+1) > HighScore)
         {
             let new_score = score+1;
+            localStorage.setItem('snakegame',new_score);
             props.updateSnakeScore(new_score);
         }
         setscore(score+1);
@@ -196,9 +204,10 @@ const SnakeBoard = (props) => {
 
 
     return (
-        <div>
-            <h1>Score: {score} High Score: {HighScore}</h1>
+        <div className="snakeGame">
+            <h3 className="snakescore">Score: {score} High Score: {HighScore}</h3>
             <div className = "outerBorder">
+            
                 {board.map((row, rowIndx) => (
                     <div key = {rowIndx} className = "row">
                         {row.map((cell, cellIndx) => (
@@ -207,6 +216,7 @@ const SnakeBoard = (props) => {
                     </div>
                 ))}
             </div>
+            <div><h3 style={{fontWeight:400}}>How to play: Use your arrow keys to move the tiles.</h3></div>
         </div>
     );
 };
@@ -290,7 +300,6 @@ const getnextNodeDirection = (node, curretnDirection) => {
 }
 
 const getGrowthnodecords = (snaketail, currentDIRECTION) => {
-    debugger;
     const tailnextnodeDirection = getnextNodeDirection(snaketail, currentDIRECTION);
     const growthDirection = getOppositedirec(tailnextnodeDirection);
     const currenttailcords = {
